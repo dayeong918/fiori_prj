@@ -102,7 +102,7 @@ sap.ui.define([
             if (!this._pPopover) {
                 this._pPopover = Fragment.load({
                     id: oView.getId(),
-                    name: "zsalesorderfi.view.fragment.Popover",
+                    name: "fiori_prj.view.fragment.Popover",
                     controller: this
                 }).then(function(oPopover) {
                     oView.addDependent(oPopover);
@@ -205,12 +205,17 @@ sap.ui.define([
 
                         var enteredValue = oEvent.getParameter("value");
                         var boundValue = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath()).InvQty;
-                        var fullpath = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
+                        // var fullpath = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
                         
                         console.log(oModel);
+                        console.log(enteredValue);
                         console.log(aStore);
+
                         // value state 설정
-                        if (enteredValue == 0) {
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                        if (enteredValue == 0) {    //  재고 값이 0일때여야하는 거 아닌지??
+
                             oEvent.getSource().setValueState(sap.ui.core.ValueState.none);
                             oEvent.getSource().setValueStateText("품절입니다.");
                           }
@@ -219,11 +224,16 @@ sap.ui.define([
                           oEvent.getSource().setValueStateText("구매 수량이 현재 재고량보다 초과되었습니다.");
                         } else if(enteredValue < boundValue){
                           oEvent.getSource().setValueState(sap.ui.core.ValueState.Success);
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                          // 아래 로직이 성공시 진행하는 사항이 아닌지? 그냥 진행해도 괜찬은지?
                         };
-        
+
                         // 장바구니 추가 삭제 로직
                         var odataItem = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
                         var sSelectSkuId, sBatch;
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                        //  item 파라미터는 전역 변수인지? 아니면 단순 파라미터로 활용하는 건지?
+                        // 현재 로직으로 item 존재이유 없이 무조건 Fail로 넘어감                      
                         var hasItem = aStore.some(function(item){ //some : 값을 찾아주는 함수
                             if(item.SkuId === odataItem.SkuId && item.Batch === odataItem.Batch) {
                                 sSelectSkuId = item.SkuId;
@@ -233,8 +243,10 @@ sap.ui.define([
                             return false; 
                         });
         
+
+
                         if(hasItem){
-                            if(enteredValue === 0) {
+                            if(enteredValue === 0) { 
         
                                 // 장바구니에 데이터가 있는데 StepInput 값이 0 인 경우, json model 에서 해당 데이터 삭제
                                 if (enteredValue === 0) {
@@ -259,7 +271,7 @@ sap.ui.define([
                             odataItem.cnt = enteredValue;
                             aStore.push(odataItem); //aStore Json model에 아이템을 담음
                         }
-                        jsonModel.setData(aStore[0]); //데이터 세팅함.
+                        jsonModel.setData(aStore); //데이터 세팅함.
         
                         this.getView().getModel("a").setProperty("/clickCount", aStore.length);
                         console.log(this.getView().getModel("a").getProperty("/clickCount"));
