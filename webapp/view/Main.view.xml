@@ -1,0 +1,398 @@
+<mvc:View controllerName="zsalesorderfi.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.uxap"
+    xmlns:m="sap.m"
+    xmlns:t="sap.m.Table"
+	xmlns:u="sap.ui.unified"
+	height="100%"
+    >
+    <ObjectPageLayout id="listPage"
+		showTitleInHeaderContent="true"
+		showEditHeaderButton="true"
+        useIconTabBar="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:HBox>
+						<m:Title text="가맹점 주문프로그램" wrapping="true"/>
+					</m:HBox>
+				</expandedHeading>
+				<actions>
+					<ObjectPageHeaderActionButton id="BadgedButton"
+						icon="{= ${a>/buttonWithIcon} ? ${a>/buttonIcon} : '' }" type="Emphasized" press="cartPress"
+						text="{a>/buttonText}" ariaHasPopup="Dialog" tooltip="주문확인" >
+						<customData>
+							<m:BadgeCustomData 
+								key="badge"
+								value="{= ${json>/}.value}  {a>/clickCount}"
+								visible="true"
+							>
+							</m:BadgeCustomData>
+						</customData>						  
+					</ObjectPageHeaderActionButton>
+				</actions>
+			</ObjectPageDynamicHeaderTitle>
+			
+		</headerTitle>
+		
+		<!-- <headerContent>
+			<m:FlexBox wrap="Wrap">
+			</m:FlexBox>
+		</headerContent> -->
+
+		<sections>
+			<ObjectPageSection titleUppercase="false" id="total" title="전체">
+				<heading>
+					<!-- <m:MessageStrip text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." type="Error" /> -->
+				</heading>
+				<subSections>
+				<ObjectPageSubSection>
+					<m:Table id="idProductsTable"
+						inset="false"
+						items="{/SKUPSet}"
+						itemPress="onListItemPress"
+                        mode="SingleSelectMaster"
+                        selectionChange="onChange"
+                        >
+					
+					<m:columns>
+						<m:Column hAlign="Center">
+							<m:Text text="SKU ID" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text id = "a1" text="Batch" />
+						</m:Column >
+                        <m:Column hAlign="Center" width="200px">
+							<m:Text text="SKU명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="모델명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="가격" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text text="재고수량" />
+						</m:Column>				
+                        <m:Column hAlign="Center" >
+							<m:Text text="구매수량" />
+						</m:Column>
+
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem>
+							<m:cells>
+								<m:Text text="{SkuId}" />
+                                <m:Text text="{Batch}" />
+                                <m:Text text="{SkuName}"/>                                
+								<m:Text text="{ModelId}"/>
+								<u:Currency value="{= Number(${Price})}" currency="{Currency}" useSymbol="false"></u:Currency>
+								<m:ObjectStatus 
+									icon="{= ${InvQty} === 0 ? 'sap-icon://error' : 'sap-icon://sys-enter-2'}"
+									state="{= ${InvQty} === 0 ? 'Error' : 'Success'}"
+										/>
+								<m:StepInput change="onValueChange" max="{InvQty}" min="0" visible="true" enabled="{= ${InvQty} > 0 ? true : false}"></m:StepInput>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+				</ObjectPageSubSection>
+				</subSections>
+				<subSections>
+				
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" id="personalSection" title="케이스" importance="Medium">
+					<heading>
+					</heading>
+					<subSections>
+					<ObjectPageSubSection id="case" title="일반" titleUppercase="false">
+						<m:Table id="idProductsTable2"
+						inset="false"
+						items="{/SKUP_CSet}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onChange"
+                        >
+					<m:headerToolbar>
+						<!-- <m:Toolbar>
+							<m:Title text="Products" level="H2"/>
+						</m:Toolbar> -->
+					</m:headerToolbar>
+					<m:columns>
+						<m:Column hAlign="Center">
+							<m:Text text="SKU ID" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text id = "a2" text="Batch" />
+						</m:Column >
+                        <m:Column hAlign="Center" width="200px">
+							<m:Text text="SKU명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="모델명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="가격" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text text="재고수량" />
+						</m:Column>				
+                        <m:Column hAlign="Center" >
+							<m:Text text="구매수량" />
+						</m:Column>
+
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem>
+							<m:cells>
+								<m:Text text="{SkuId}" />
+                                <m:Text text="{Batch}" />
+                                <m:Text text="{SkuName}"/>                                
+								<m:Text text="{ModelId}"/>
+								<u:Currency value="{= Number(${Price})}" currency="{Currency}" useSymbol="false"></u:Currency>
+								<m:ObjectStatus 
+									icon="{= ${InvQty} === 0 ? 'sap-icon://error' : 'sap-icon://sys-enter-2'}"
+									state="{= ${InvQty} === 0 ? 'Error' : 'Success'}"
+										/>
+								<m:StepInput change="onValueChange" max="{InvQty}" min="0" visible="true" enabled="{= ${InvQty} > 0 ? true : false}"></m:StepInput>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+				</ObjectPageSubSection>
+					<ObjectPageSubSection id="case_re" title="Recycle" titleUppercase="false">
+						<m:Table id="idProductsTable8"
+						inset="false"
+						items="{/SKUP_C_ReSet}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onChange"
+                        >
+					<m:headerToolbar>
+						<!-- <m:Toolbar>
+							<m:Title text="Products" level="H2"/>
+						</m:Toolbar> -->
+					</m:headerToolbar>
+					<m:columns>
+						<m:Column hAlign="Center">
+							<m:Text text="SKU ID" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text id = "a3" text="Batch" />
+						</m:Column >
+                        <m:Column hAlign="Center" width="200px">
+							<m:Text text="SKU명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="모델명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="가격" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text text="재고수량" />
+						</m:Column>				
+                        <m:Column hAlign="Center" >
+							<m:Text text="구매수량" />
+						</m:Column>
+
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem>
+							<m:cells>
+								<m:Text text="{SkuId}" />
+                                <m:Text text="{Batch}" />
+                                <m:Text text="{SkuName}"/>                                
+								<m:Text text="{ModelId}"/>
+								<u:Currency value="{= Number(${Price})}" currency="{Currency}" useSymbol="false"></u:Currency>
+								<m:ObjectStatus 
+									icon="{= ${InvQty} === 0 ? 'sap-icon://error' : 'sap-icon://sys-enter-2'}"
+									state="{= ${InvQty} === 0 ? 'Error' : 'Success'}"
+										/>
+								<m:StepInput change="onValueChange" max="{InvQty}" min="0" visible="true" enabled="{= ${InvQty} > 0 ? true : false}"></m:StepInput>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection titleUppercase="false" id="film1" title="필름">
+				<subSections>
+					<ObjectPageSubSection id="film2" title="Phone" titleUppercase="false">
+						<m:Table id="idProductsTable3"
+						inset="false"
+						items="{/SKUP_F_PhSet}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onChange"
+                        >
+					<m:headerToolbar>
+						<!-- <m:Toolbar>
+							<m:Title text="Products" level="H2"/>
+						</m:Toolbar> -->
+					</m:headerToolbar>
+					<m:columns>
+						<m:Column hAlign="Center">
+							<m:Text text="SKU ID" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text id = "a4" text="Batch" />
+						</m:Column >
+                        <m:Column hAlign="Center" width="200px">
+							<m:Text text="SKU명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="모델명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="가격" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text text="재고수량" />
+						</m:Column>				
+                        <m:Column hAlign="Center" >
+							<m:Text text="구매수량" />
+						</m:Column>
+
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem>
+							<m:cells>
+								<m:Text text="{SkuId}" />
+                                <m:Text text="{Batch}" />
+                                <m:Text text="{SkuName}"/>                                
+								<m:Text text="{ModelId}"/>
+								<u:Currency value="{= Number(${Price})}" currency="{Currency}" useSymbol="false"></u:Currency>
+								<m:ObjectStatus 
+									icon="{= ${InvQty} === 0 ? 'sap-icon://error' : 'sap-icon://sys-enter-2'}"
+									state="{= ${InvQty} === 0 ? 'Error' : 'Success'}"
+										/>
+								<m:StepInput change="onValueChange" max="{InvQty}" min="0" visible="true" enabled="{= ${InvQty} > 0 ? true : false}"></m:StepInput>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>				
+			</ObjectPageSubSection>
+					<ObjectPageSubSection id="film3" title="Pad" importance="Medium" titleUppercase="false">
+						<m:Table id="idProductsTable4"
+						inset="false"
+						items="{/SKUP_F_TSet}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onChange"
+                        >
+					<m:headerToolbar>
+						<!-- <m:Toolbar>
+							<m:Title text="Products" level="H2"/>
+						</m:Toolbar> -->
+					</m:headerToolbar>
+					<m:columns>
+						<m:Column hAlign="Center">
+							<m:Text text="SKU ID" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text id = "a5" text="Batch" />
+						</m:Column >
+                        <m:Column hAlign="Center" width="200px">
+							<m:Text text="SKU명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="모델명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="가격" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text text="재고수량" />
+						</m:Column>				
+                        <m:Column hAlign="Center" >
+							<m:Text text="구매수량" />
+						</m:Column>
+
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem>
+							<m:cells>
+								<m:Text text="{SkuId}" />
+                                <m:Text text="{Batch}" />
+                                <m:Text text="{SkuName}"/>                                
+								<m:Text text="{ModelId}"/>
+								<u:Currency value="{= Number(${Price})}" currency="{Currency}" useSymbol="false"></u:Currency>
+								<m:ObjectStatus 
+									icon="{= ${InvQty} === 0 ? 'sap-icon://error' : 'sap-icon://sys-enter-2'}"
+									state="{= ${InvQty} === 0 ? 'Error' : 'Success'}"
+										/>
+								<m:StepInput change="onValueChange" max="{InvQty}" min="0" visible="true" enabled="{= ${InvQty} > 0 ? true : false}"></m:StepInput>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+					</ObjectPageSubSection>
+					<ObjectPageSubSection id="film4" title="Watch" importance="Medium" titleUppercase="false">
+						<m:Table id="idProductsTable5"
+						inset="false"
+						items="{/SKUP_F_WSet}"
+                        mode="SingleSelectMaster"
+                        selectionChange="onChange"
+                        >
+					<m:headerToolbar>
+						<!-- <m:Toolbar>
+							<m:Title text="Products" level="H2"/>
+						</m:Toolbar> -->
+					</m:headerToolbar>
+					<m:columns>
+						<m:Column hAlign="Center">
+							<m:Text text="SKU ID" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text id = "a" text="Batch" />
+						</m:Column >
+                        <m:Column hAlign="Center" width="200px">
+							<m:Text text="SKU명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="모델명" />
+						</m:Column>
+						<m:Column hAlign="Center">
+							<m:Text text="가격" />
+						</m:Column>
+                        <m:Column hAlign="Center">
+							<m:Text text="재고수량" />
+						</m:Column>				
+                        <m:Column hAlign="Center" >
+							<m:Text text="구매수량" />
+						</m:Column>
+
+					</m:columns>
+					<m:items>
+						<m:ColumnListItem>
+							<m:cells>
+								<m:Text text="{SkuId}" />
+                                <m:Text text="{Batch}" />
+                                <m:Text text="{SkuName}"/>                                
+								<m:Text text="{ModelId}"/>
+								<u:Currency value="{= Number(${Price})}" currency="{Currency}" useSymbol="false"></u:Currency>
+								<m:ObjectStatus 
+									icon="{= ${InvQty} === 0 ? 'sap-icon://error' : 'sap-icon://sys-enter-2'}"
+									state="{= ${InvQty} === 0 ? 'Error' : 'Success'}"
+										/>
+								<m:StepInput change="onValueChange" max="{InvQty}" min="0" visible="true" enabled="{= ${InvQty} > 0 ? true : false}"></m:StepInput>
+							</m:cells>
+						</m:ColumnListItem>
+					</m:items>
+				</m:Table>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+		</sections>
+		<footer>
+			<!-- <m:OverflowToolbar>
+				<m:ToolbarSpacer />
+				<m:Button type="Accept" text="Accept"/>
+				<m:Button type="Reject" text="Reject"/>
+			</m:OverflowToolbar> -->
+		</footer>
+	</ObjectPageLayout>
+</mvc:View>
