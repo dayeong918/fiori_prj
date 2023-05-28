@@ -200,14 +200,15 @@ sap.ui.define([
                     },
                     onValueChange: function(oEvent){
                         var oModel = this.getOwnerComponent().getModel();
-                        var aStore = this.getView().getModel("json").getData();
-
+                        var aStore = [this.getView().getModel("json").getData()];
+                        var jsonModel = this.getView().getModel("json");  
 
                         var enteredValue = oEvent.getParameter("value");
                         var boundValue = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath()).InvQty;
                         var fullpath = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
                         
                         console.log(oModel);
+                        console.log(aStore);
                         // value state 설정
                         if (enteredValue == 0) {
                             oEvent.getSource().setValueState(sap.ui.core.ValueState.none);
@@ -258,7 +259,7 @@ sap.ui.define([
                             odataItem.cnt = enteredValue;
                             aStore.push(odataItem); //aStore Json model에 아이템을 담음
                         }
-                        jsonModel.setData(aStore); //데이터 세팅함.
+                        jsonModel.setData(aStore[0]); //데이터 세팅함.
         
                         this.getView().getModel("a").setProperty("/clickCount", aStore.length);
                         console.log(this.getView().getModel("a").getProperty("/clickCount"));
