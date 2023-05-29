@@ -29,9 +29,8 @@ sap.ui.define([
                     buttonWithText:		true
                 });
                 this.getView().setModel(this.oModel,"a");
-                // this.getView().setModel(new JSONModel(),"json");
-                this.getView().setModel(new JSONModel(),"json");
-  
+                this.jsonModel = this.getView().setModel(new JSONModel(),"json");
+                this.aStore = []; // 함수 외부에 aStore 변수 정의 및 초기화
     
                 // create internal vars with instances of controls
                 this.oLabel = this.byId("ButtonLabel");
@@ -42,6 +41,7 @@ sap.ui.define([
                 this.oLabelCheckBox = this.byId("LabelCheckBox");
                 // 컨트롤러 부분입니다.
             },
+            // current value or min/max values change handler
             currentChangeHandler: function() {
                 var iCurrent = this.oCurrent.getValue(),
                     oButtonBadgeCustomData = this.oButton.getBadgeCustomData(),
@@ -53,47 +53,7 @@ sap.ui.define([
     
                 oButtonBadgeCustomData.setValue(sValue);
             },
-    
             
-            handleButtonClick: function(oEvent){
-                var clickCount = this.getView().getModel("a").getProperty("/clickCount") || 0;
-                clickCount++;
-                console.log('버튼 클릭 횟수:', clickCount);
-                ////////////추가내용 시작
-                // var jsonModel = this.getView().getModel("json");
-                var aStore = jsonModel.getData();
-                var odataItem = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
-                var sSelectSkuId, sBatch;
-                var hasItem = aStore.some(function(item){ //some : 값을 찾아주는 함수
-                    if(item.SkuId === odataItem.SkuId && item.Batch === odataItem.Batch) {
-                        sSelectSkuId = item.SkuId;
-                        sBatch = item.Batch;
-                        return true;
-                    }
-                    return false; 
-                });
-
-                if(hasItem){
-                    aStore = aStore.map(function(item){ //map : 배열로 결과도출
-                        if(item.SkuId === sSelectSkuId && item.Batch === sBatch) item.cnt++;
-                        return item;
-                    })
-                }else{
-                    odataItem.cnt = 1;
-                    aStore.push(odataItem); //aStore Json model에 아이템을 담음
-                }
-
-                jsonModel.setData(aStore); //데이터 세팅함.
-
-                ///////////추가내용 끝
-                var oButtonBadgeCustomData = this.byId("BadgedButton").getCustomData()[0];
-                if (!oButtonBadgeCustomData) {
-                    return;
-                }
-                oButtonBadgeCustomData.setValue(clickCount);
-                this.getView().getModel("a").setProperty("/clickCount", clickCount);
-
-            },
             cartPress: function(oEvent){
                 //popover 로직
                 var oButton = oEvent.getSource(),
@@ -115,7 +75,11 @@ sap.ui.define([
             this._pPopover.then(function(oPopover) {
                 oPopover.openBy(oButton);
             });
-            }, _handleMessageBoxOpen: function (Message, sMessageBoxType) {
+            },
+            soPress: function(){
+
+            },
+            _handleMessageBoxOpen: function (Message, sMessageBoxType) {
                 MessageBox[sMessageBoxType](Message, {
                     actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                     onClose: function (oAction) {
@@ -198,72 +162,81 @@ sap.ui.define([
                             }
                         }
                     },
-                    onValueChange: function(oEvent){
-                        var oModel = this.getOwnerComponent().getModel();
-                        var aStore = [this.getView().getModel("json").getData()];
-                        var jsonModel = this.getView().getModel("json");  
+                onValueChange: function(oEvent){
+                var oModel = this.getOwnerComponent().getModel();
+                var jsonModel = this.getView().getModel("json");
+                var enteredValue = oEvent.getParameter("value");
+                var aStore = [];
+                var boundValue = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath()).InvQty;
+                var fullpath = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
+                
+                console.log(oModel);
+                debugger;
+                // value state 설정
+                if (enteredValue == 0) {
+                    oEvent.getSource().setValueState(sap.ui.core.ValueState.none);
+                    oEvent.getSource().setValueStateText("품절입니다.");
+                  }
+                else if (enteredValue > boundValue) {
+                  oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
+                  oEvent.getSource().setValueStateText("구매 수량이 현재 재고량보다 초과되었습니다.");
+                } else if(enteredValue <= boundValue){
+                  oEvent.getSource().setValueState(sap.ui.core.ValueState.Success);
+                };
 
-                        var enteredValue = oEvent.getParameter("value");
-                        var boundValue = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath()).InvQty;
-                        var fullpath = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
-                        
-                        console.log(oModel);
-                        console.log(aStore);
-                        // value state 설정
-                        if (enteredValue == 0) {
-                            oEvent.getSource().setValueState(sap.ui.core.ValueState.none);
-                            oEvent.getSource().setValueStateText("품절입니다.");
-                          }
-                        else if (enteredValue > boundValue) {
-                          oEvent.getSource().setValueState(sap.ui.core.ValueState.Error);
-                          oEvent.getSource().setValueStateText("구매 수량이 현재 재고량보다 초과되었습니다.");
-                        } else if(enteredValue < boundValue){
-                          oEvent.getSource().setValueState(sap.ui.core.ValueState.Success);
-                        };
-        
-                        // 장바구니 추가 삭제 로직
-                        var odataItem = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
-                        var sSelectSkuId, sBatch;
-                        var hasItem = aStore.some(function(item){ //some : 값을 찾아주는 함수
-                            if(item.SkuId === odataItem.SkuId && item.Batch === odataItem.Batch) {
-                                sSelectSkuId = item.SkuId;
-                                sBatch = item.Batch;
-                                return true;
-                            }
-                            return false; 
-                        });
-        
-                        if(hasItem){
-                            if(enteredValue === 0) {
-        
-                                // 장바구니에 데이터가 있는데 StepInput 값이 0 인 경우, json model 에서 해당 데이터 삭제
-                                if (enteredValue === 0) {
-                                    var indexToRemove = aStore.findIndex(function(item) {
-                                        return item.SkuId === sSelectSkuId && item.Batch === sBatch;
-                                    });
-                                
-                                    if (indexToRemove > -1) {
-                                        aStore.splice(indexToRemove, 1); //해당 데이터 삭제
-                                        jsonModel.setData(aStore); // 변경된 데이터를 모델에 설정
-                                    }
-                                }
-                            }
-                            aStore = aStore.map(function(item){ //map : 배열로 결과도출
-                                if(item.SkuId === sSelectSkuId && item.Batch === sBatch) {
-                                    item.cnt = enteredValue;
-                                }
-                                    return item;
-                            })
-        
-                        }else{
-                            odataItem.cnt = enteredValue;
-                            aStore.push(odataItem); //aStore Json model에 아이템을 담음
-                        }
-                        jsonModel.setData(aStore[0]); //데이터 세팅함.
-        
-                        this.getView().getModel("a").setProperty("/clickCount", aStore.length);
-                        console.log(this.getView().getModel("a").getProperty("/clickCount"));
-                        
+                // // 장바구니 추가 삭제 로직
+                var odataItem = this.getView().getModel().getObject(oEvent.getSource().getBindingContext().getPath());
+                var sSelectSkuId, sBatch;
+                // aStore.push(odataItem);
+                var hasItem = this.aStore.some(function(item){ //some : 값을 찾아주는 함수
+                    if(item.SkuId === odataItem.SkuId && item.Batch === odataItem.Batch) {
+                        sSelectSkuId = item.SkuId;
+                        sBatch = item.Batch;
+                        return true;
                     }
+                    return false; 
+                });
+                
+
+                if(hasItem){
+                    if(enteredValue === 0) {
+
+                        // 장바구니에 데이터가 있는데 StepInput 값이 0 인 경우, json model 에서 해당 데이터 삭제
+                        if (enteredValue === 0) {
+                            var indexToRemove = this.aStore.findIndex(function(item) {
+                                return item.SkuId === sSelectSkuId && item.Batch === sBatch;
+                            });
+                        
+                            if (indexToRemove > -1) {
+                                this.aStore.splice(indexToRemove, 1); //해당 데이터 삭제
+                                jsonModel.setData(this.aStore); // 변경된 데이터를 모델에 설정
+                            }
+                        }
+                    }
+                    this.aStore = this.aStore.map(function(item){ //map : 배열로 결과도출
+                        if(item.SkuId === sSelectSkuId && item.Batch === sBatch) item.cnt = enteredValue;
+                        return item;
+                    })
+
+                }else{
+                    odataItem.cnt = enteredValue;
+                    this.aStore.push(odataItem); //aStore Json model에 아이템을 담음
+                }
+                jsonModel.setData(this.aStore); //데이터 세팅함.
+
+                this.getView().getModel("a").setProperty("/clickCount", this.aStore.length);
+                console.log(this.getView().getModel("a").getProperty("/clickCount"));
+                
+                // odata에 create된 애들 생성해주기
+                // this.oModel.create("/Purchase", aStore, {
+                //     success: function() {
+                //         MessageToast.show("주문이 완료되었습니다.");
+                //     }, 
+                //     error: function(){
+                //         MessageToast.show("주문이 생성되지 않았습니다.");
+                //     }
+                // })                
+            }
+            
         });
     });

@@ -2,7 +2,6 @@
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.uxap"
     xmlns:m="sap.m"
-    xmlns:t="sap.m.Table"
 	xmlns:u="sap.ui.unified"
 	height="100%"
     >
@@ -20,8 +19,14 @@
 				</expandedHeading>
 				<actions>
 					<ObjectPageHeaderActionButton id="BadgedButton"
+						icon="sap-icon://sales-order" type="Neutral" press="soPress"
+						text="{a>/buttonText}" ariaHasPopup="Dialog" tooltip="주문오더확인" >					  
+					</ObjectPageHeaderActionButton>
+				</actions>
+				<actions>
+					<ObjectPageHeaderActionButton id="BadgedButton2"
 						icon="{= ${a>/buttonWithIcon} ? ${a>/buttonIcon} : '' }" type="Emphasized" press="cartPress"
-						text="{a>/buttonText}" ariaHasPopup="Dialog" tooltip="주문확인" >
+						text="{a>/buttonText}" ariaHasPopup="Dialog" tooltip="주문하기" >
 						<customData>
 							<m:BadgeCustomData 
 								key="badge"
@@ -43,17 +48,12 @@
 
 		<sections>
 			<ObjectPageSection titleUppercase="false" id="total" title="전체">
-				<heading>
-					<!-- <m:MessageStrip text="Lorem Ipsum is simply dummy text of the printing and typesetting industry." type="Error" /> -->
-				</heading>
 				<subSections>
 				<ObjectPageSubSection>
 					<m:Table id="idProductsTable"
 						inset="false"
 						items="{/SKUPSet}"
-						itemPress="onListItemPress"
                         mode="SingleSelectMaster"
-                        selectionChange="onChange"
                         >
 					
 					<m:columns>
@@ -105,15 +105,12 @@
 			</ObjectPageSection>
 
 			<ObjectPageSection titleUppercase="false" id="personalSection" title="케이스" importance="Medium">
-					<heading>
-					</heading>
 					<subSections>
 					<ObjectPageSubSection id="case" title="일반" titleUppercase="false">
 						<m:Table id="idProductsTable2"
 						inset="false"
 						items="{/SKUP_CSet}"
                         mode="SingleSelectMaster"
-                        selectionChange="onChange"
                         >
 					<m:headerToolbar>
 						<!-- <m:Toolbar>
@@ -167,7 +164,6 @@
 						inset="false"
 						items="{/SKUP_C_ReSet}"
                         mode="SingleSelectMaster"
-                        selectionChange="onChange"
                         >
 					<m:headerToolbar>
 						<!-- <m:Toolbar>
@@ -226,7 +222,6 @@
 						inset="false"
 						items="{/SKUP_F_PhSet}"
                         mode="SingleSelectMaster"
-                        selectionChange="onChange"
                         >
 					<m:headerToolbar>
 						<!-- <m:Toolbar>
@@ -280,7 +275,6 @@
 						inset="false"
 						items="{/SKUP_F_TSet}"
                         mode="SingleSelectMaster"
-                        selectionChange="onChange"
                         >
 					<m:headerToolbar>
 						<!-- <m:Toolbar>
@@ -334,7 +328,6 @@
 						inset="false"
 						items="{/SKUP_F_WSet}"
                         mode="SingleSelectMaster"
-                        selectionChange="onChange"
                         >
 					<m:headerToolbar>
 						<!-- <m:Toolbar>
