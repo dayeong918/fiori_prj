@@ -15,11 +15,11 @@
 			<Page
 				id="master"
 				class="sapUiResponsivePadding--header"
-				title="Total Price: {json>/Price}">
+				title="Total {json>/price}">
 				<VBox>
 				<List
 					id="list"
-					mode="Delete"
+					mode="None"
 					enableBusyIndicator="true"
 					growing="true"
 					items='{json>/}' 

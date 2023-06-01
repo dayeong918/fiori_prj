@@ -236,7 +236,7 @@
 							<m:Text text="재고수량" />
 						</m:Column>				
                         <m:Column hAlign="Center" >
-							<m:Text text="주문수량" />
+							<m:Text text="구매수량" />
 						</m:Column>
 
 					</m:columns>

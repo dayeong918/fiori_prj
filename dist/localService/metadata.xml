@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZGW_CBC_SDORDL_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="SD_ORD_H" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrdDocNum"/>
+                </Key>
+                <Property Name="OrdDocNum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="문서번호" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrdTpId" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="오더 유형_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SdTypeCode" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="영업구분코드" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PoNum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="PO번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeptId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="부서_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeptTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelBpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="납품처 ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelBpTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="출하조건" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelTypeTxt" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Char20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrdDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="주문일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelReqDate" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="납품 요청일" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DelMessage" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="배송메시지" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Address" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="이름" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Telephone" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Tel." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Undefined range (can be used for patch levels)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="사원" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="작성일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erzet" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="작성시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aenam" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="사원" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="수정일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aezet" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="수정시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="SD_ORD_I" Relationship="ZGW_CBC_SDORDL_SRV.SD_ORD_HI" FromRole="FromRole_SD_ORD_HI" ToRole="ToRole_SD_ORD_HI"/>
+            </EntityType>
+            <EntityType Name="SD_ORD_I" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="OrdDocNum"/>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="OrdDocNum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="문서번호" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OrdQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="주문수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="StfUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="TotalPrice" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="OutDocNum" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="문서번호" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OutQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="주문수량" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OutUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Deletes" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="삭제사유" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ernam" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="사원" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erdat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="작성일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Erzet" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="작성시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aenam" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="사원" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aedat" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="수정일자" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Aezet" Type="Edm.Time" Precision="0" sap:unicode="false" sap:label="수정시간" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="SD_ORD_H" Relationship="ZGW_CBC_SDORDL_SRV.SD_ORD_HI" FromRole="ToRole_SD_ORD_HI" ToRole="FromRole_SD_ORD_HI"/>
+            </EntityType>
+            <EntityType Name="SKUP" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SKUP_C" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SKUP_C_Re" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SKUP_F" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SKUP_F_Ph" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SKUP_F_T" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="SKUP_F_W" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SkuId"/>
+                    <PropertyRef Name="Batch"/>
+                </Key>
+                <Property Name="InvType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="재고타입" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="InvQty" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="INV_QTY" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Unit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SKU_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Batch" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="배치" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuName" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="SKU_NAME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Brand" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="제조사명" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ModelId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="모델ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Weight" Type="Edm.Int32" Nullable="false" sap:unicode="false" sap:label="WEIGHT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WUnit" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="W_UNIT" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="SkuSize" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="SIZE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.Decimal" Nullable="false" Precision="17" Scale="4" sap:unicode="false" sap:unit="Currency" sap:label="판매가격" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WhId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="WareHouse_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BP ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SkuType" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="SKU_TYPE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency Key" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="RouteId" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="ROUTE_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="SD_ORD_HI" sap:content-version="1">
+                <End Type="ZGW_CBC_SDORDL_SRV.SD_ORD_H" Multiplicity="1" Role="FromRole_SD_ORD_HI"/>
+                <End Type="ZGW_CBC_SDORDL_SRV.SD_ORD_I" Multiplicity="*" Role="ToRole_SD_ORD_HI"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SD_ORD_HI">
+                        <PropertyRef Name="OrdDocNum"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SD_ORD_HI">
+                        <PropertyRef Name="OrdDocNum"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZGW_CBC_SDORDL_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="SD_ORD_HSet" EntityType="ZGW_CBC_SDORDL_SRV.SD_ORD_H" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SD_ORD_ISet" EntityType="ZGW_CBC_SDORDL_SRV.SD_ORD_I" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUPSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUP_CSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP_C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUP_C_ReSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP_C_Re" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUP_FSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP_F" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUP_F_PhSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP_F_Ph" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUP_F_TSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP_F_T" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SKUP_F_WSet" EntityType="ZGW_CBC_SDORDL_SRV.SKUP_F_W" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="SD_ORD_HISet" Association="ZGW_CBC_SDORDL_SRV.SD_ORD_HI" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="SD_ORD_HSet" Role="FromRole_SD_ORD_HI"/>
+                    <End EntitySet="SD_ORD_ISet" Role="ToRole_SD_ORD_HI"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGW_CBC_SDORDL_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://edu.bgis.co.kr:8001/sap/opu/odata/sap/ZGW_CBC_SDORDL_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

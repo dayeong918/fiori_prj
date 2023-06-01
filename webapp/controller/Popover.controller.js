@@ -10,7 +10,7 @@ function (Fragment, Controller, JSONModel, MessageBox) {
   "use strict";
 
   return Controller.extend("zsalesorderfi.controller.Popover", {
-    onInit: function (evt) {
+    onInit: function (oEvent) {
       var oButton = oEvent.getSource(),
         oView = this.getView();
 
@@ -52,36 +52,10 @@ function (Fragment, Controller, JSONModel, MessageBox) {
       this._handleMessageBoxOpen("Are you sure you want to cancel your purchase?", "warning");
       this.byId("close").close();
     },
-    leWizardCancel: function () {
-      this.byId("myPopover").close();
+    leWizardCancel: function (oEvent) {
+      var popover = oEvent.getSource().getParent();
+      popover.close();
+      // this.byId("myPopover").close();
     },
-    handleDamdaSubmit: function () {
-      var odataModel = this.getView().getModel();
-      var aStore = this.getView().getModel("json").getData();
-      this._handleMessageBoxOpen2("주문오더를 생성하시겠습니까?", "confirm", function (action) {
-        if (action === MessageBox.Action.OK) {
-          console.log("구매시작");
-          var ODatas = [];
-          for (var i = 0; i < aStore.length; i++) {
-            ODatas.push({
-              "ORD_DOC_NUM": String(i),
-              "SKU_ID": aStore[i].SkuId,
-              "BATCH": aStore[i].Batch,
-              "ORD_QTY": aStore[i].cnt
-            });
-          }
-          odataModel.create("/SD_ORD_ISet", ODatas, {
-            success: function (oRetrun) {
-              console.log("성공");
-              return oRetrun;
-            },
-            error: function () {
-              console.log("실패");
-            }
-          });
-        }
-        debugger;
-      });
-    }
   });
 });

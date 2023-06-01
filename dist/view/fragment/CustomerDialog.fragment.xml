@@ -1,0 +1,67 @@
+<core:FragmentDefinition
+    xmlns="sap.ui.table"
+    xmlns:core="sap.ui.core"
+    xmlns:m="sap.m"
+    height="100%"
+    xmlns:t="sap.ui.table"
+    >
+   <m:Dialog id="Dialog" title="주문내역조회" draggable="true" resizable="true" >
+            <Table
+                    id = "TB_SO"
+                    rows="{/SD_ORD_H_SSet}"
+                    selectionMode="Single"
+                    visibleRowCount="7"
+                    paste="onPaste"
+                    ariaLabelledBy="title"
+					width="700px"
+                    rowSelectionChange="onInputValue">
+                    <extension>
+                        <!-- <m:OverflowToolbar style="Clear">
+                            <m:Title id="title" text="Product" />
+                        </m:OverflowToolbar> -->
+                    </extension>
+                    <columns>
+                        <Column width="200px">
+                            <m:Label text="주문문서번호" />
+                            <template>
+                                <m:Text text="{OrdDocNum}"  wrapping="false" />
+                            </template>
+                        </Column>
+
+                        <Column>
+                            <m:Label text="생성날짜" />
+                            <template> 
+								<m:Text
+                                text="{
+                                            path: 'Erdat',
+                                            type: 'sap.ui.model.type.Date',
+                                            formatOptions: {pattern: 'yyyy-MM-dd', UTC: true}
+                                        }
+										" />
+                            </template>
+                        </Column>
+						<!-- <Column>
+                            <m:Label text="생성시간" />
+                            <template>
+								<m:Text
+                                text="
+										{
+											path: 'Erzet',
+                                            type: 'sap.ui.model.type.Time',
+                                            formatOptions: {pattern: 'hh-mm-ss'}
+										}
+										" />
+                            </template>
+                        </Column> -->
+
+                    </columns>  
+                </Table>
+                <m:beginButton>
+        <m:Button text="Search" press="onSearch"/>
+      </m:beginButton> 
+      <m:endButton>
+        <m:Button text="close" press="onClose"/>
+      </m:endButton>
+        
+   </m:Dialog>
+</core:FragmentDefinition>
